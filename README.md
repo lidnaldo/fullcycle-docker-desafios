@@ -13,13 +13,13 @@ Suba o projeto em um repositório Git remoto e coloque o link da imagem que subi
 - Criado arquivo main.go para exibir mensagem "Full Cycle Rocks!!"; 
 - Criado arquivo go.mod simples usado para gerenciar pacotes e dependencias Go, apesar de não conhecer, fez-se necessário para executar dockerfile com sucesso;
 - Por fim, criado dockerfile para gerar imagem menor que 2Mb.
-
-
+<br><br>
     Após baixar repositório, executar os comandos terminal: <br>
     ```docker build -t <seu-user>/fullcycle .```
     <br> ```docker run <seu-user>/fullcycle```
 
-
+    Para imagem via dockerhub : <br>
+    ``docker pull lidnaldo/fullcycle``
 
 
 
