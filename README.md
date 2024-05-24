@@ -15,6 +15,11 @@ Suba o projeto em um repositório Git remoto e coloque o link da imagem que subi
 - Por fim, criado dockerfile para gerar imagem menor que 2Mb.
 
 
+    Após baixar repositório, executar os comandos terminal: <br>
+    ```docker build -t <seu-user>/fullcycle .```
+    <br> ```docker run <seu-user>/fullcycle```
+
+
 
 
 
