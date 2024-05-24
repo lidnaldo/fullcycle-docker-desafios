@@ -1,2 +1,2 @@
 # fullcycle-docker-desafios
-Reposit
+Repositório para atender desafios do curso fullcycle
