@@ -33,4 +33,5 @@ Não esqueça de colocar o volume na aplicação para o ambiente de desenvolvime
 - Criada diretório node com aplicação nodeJs que insere nome aleatório no banco de dados utilizando boblioteca casual do javascript;
 - Criado diretório nginx que recebe solicitação e aciona aplicação nodejs na porta 3000; <br><br>
 
-
+_Obs.: Para execução do desafio 2, executar o docker compose do diretorio desafio_nginx_node_ sem necessidade de entrar no diretório: <br>
+`docker-compose -f desafio_nginx_node/docker-compose.yaml up -d`
