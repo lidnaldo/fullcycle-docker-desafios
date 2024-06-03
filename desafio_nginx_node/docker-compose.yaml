@@ -1,0 +1,57 @@
+version: '3'  
+
+services: 
+  nginx:
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: lidnaldo/fullcycle-desafio-nginx
+    container_name: nginx
+    networks:
+      - node-network  
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+
+  app:  
+    build: 
+      context: ./node  
+      dockerfile: Dockerfile
+    container_name: app 
+    image: lidnalod/fullcycle-desafio-app
+    networks: 
+      - node-network  
+    volumes: 
+      - ./node:/usr/src/app  # Monta o diretório local 'node' no diretório '/usr/src/app' do container
+    tty: true  # Mantém o serviço rodando com um terminal interativo
+    ports: 
+      - "3000:3000"  
+    depends_on:
+      db:  
+        condition: service_healthy  # A condição para a dependência é que o serviço 'db' esteja saudável
+
+  db:  
+    image: mysql:5.7  
+    platform: linux/amd64  # Plataforma da imagem, no mac m1 houve necessidade de explicitar
+    command: --innodb-use-native-aio=0  # Comando executado ao iniciar o serviço do mysql
+    container_name: db  
+    restart: always  
+    tty: true  # Mantém o serviço rodando com um terminal interativo
+    volumes: 
+      - ./mysql:/var/lib/mysql  # Monta o diretório local 'mysql' no diretório '/var/lib/mysql' do container
+    environment: 
+      - MYSQL_DATABASE=nodedb  
+      - MYSQL_ROOT_PASSWORD=root 
+    networks: 
+      - node-network  
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]  # Teste executado para verificar a saúde do serviço
+      interval: 5s  # Intervalo entre as verificações 
+      timeout: 10s  # Tempo limite para a verificação 
+      retries: 3  # Tentativas ate considerar o serviço insalubre
+
+networks: 
+  node-network:  
+    driver: bridge  
+    name: node-network
