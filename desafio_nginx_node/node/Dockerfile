@@ -1,11 +1,8 @@
 FROM node:15
 
 WORKDIR /usr/src/app
-COPY . . 
-EXPOSE 3000
-RUN npm install mysql --save
 
-CMD [ "node","index.js" ]
+EXPOSE 3000
 
 # 
 # docker build -t node . 

@@ -19,3 +19,11 @@
 
 # Go workspace file
 go.work
+
+# Ignore mysql database directory
+desafio_nginx_node/mysql/
+
+# Ignore node_modules directory
+desafio_nginx_node/node/node_modules/
+
+desafio_nginx_node/node/package-lock.json

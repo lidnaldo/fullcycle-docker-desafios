@@ -15,11 +15,12 @@ services:
       - app
 
   app:  
+    image: lidnalod/fullcycle-desafio-app
     build: 
       context: ./node  
       dockerfile: Dockerfile
     container_name: app 
-    image: lidnalod/fullcycle-desafio-app
+    entrypoint: sh -c "npm install && node index.js"
     networks: 
       - node-network  
     volumes: 
@@ -39,6 +40,7 @@ services:
     restart: always  
     tty: true  # Mantém o serviço rodando com um terminal interativo
     volumes: 
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./mysql:/var/lib/mysql  # Monta o diretório local 'mysql' no diretório '/var/lib/mysql' do container
     environment: 
       - MYSQL_DATABASE=nodedb  
